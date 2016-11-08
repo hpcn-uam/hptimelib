@@ -2,12 +2,30 @@
 
 Currently in development phase. (Adding MultiThread Support)
 
-Current version supports up to 1ns resolution.
+Current version supports up to 1ns resolution, but 10ns resolution is recomended.
 
 This library **only** works on **Intel Processors**.
 
+[![Build Status](https://travis-ci.org/ralequi/hptimelib.svg?branch=master)](https://travis-ci.org/ralequi/hptimelib)
+[![Coverage Status](https://coveralls.io/repos/github/ralequi/hptimelib/badge.svg)](https://coveralls.io/github/ralequi/hptimelib)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ralequi/hptimelib/master/LICENSE.md)
+[![Github Releases](https://img.shields.io/github/release/ralequi/hptimelib.svg)](https://github.com/ralequi/hptimelib/releases)
+[![Github Issues](https://img.shields.io/github/issues/ralequi/hptimelib.svg)](https://github.com/ralequi/hptimelib/issues)
+
+# Objetive / Use-case
+
+This lib has been designed for High Performance applications with needs a High resolution time measurements where each nanosecond matters.
+
+# How does it works / What this library provides
+
+- The library uses the cpu-instruction counter and creates a relation with the value returned by clock_gettime(CLOCK_REALTIME).
+It's important to note that the instruction counter is shared in a multi-core system (including NUMA) if the CPU flag `constant_tsc` is present.
+- This library also can wait for a certain nanoseconds actively, usefull for very-acurate real-time applications.
+- The library ensures strictly increasing timestamps.
+- The library ensures not repeated timestamps if resolution is at least  ![](http://www.sciweavers.org/tex2img.php?eq=10%5E%7B8%7D%20&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0).  
+
 # Performance comparison 
-tested on Intel(R) Xeon(R) CPU E5-2630 v2 and Fedora release 20 (Heisenbug)
+Tested on Intel(R) Xeon(R) CPU E5-2630 v2 and Fedora release 20 (Heisenbug)
 
 | Function                             | Resolution | Time per call  |
 | ------------------------------------ | ----------:| -----:|
