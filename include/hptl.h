@@ -3,9 +3,10 @@
 
   License: MIT License
   (c) HPCN 2014-2017
+  (c) Naudit HPCN S.L. 2018-2021
 
   Author: Rafael Leira
-  E-Mail: rafael.leira@uam.es
+  E-Mail: rafael.leira@naudit.es
 
   Description: High Performance Timing Library, that uses RTC counter.
 
@@ -21,13 +22,13 @@ extern "C" {
 #endif
 
 #include <inttypes.h>
-#include <time.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/syscall.h>
+#include <time.h>
 #include <unistd.h>
 
 // Config file
@@ -46,7 +47,7 @@ extern "C" {
 
 // Internal type (64 or 128b)
 #ifdef HPTL_128b
-typedef __int128 ihptl_t;
+typedef unsigned __int128 ihptl_t;
 #else
 typedef uint64_t ihptl_t;
 #endif
@@ -110,6 +111,13 @@ int hptl_calibrate (hptl_clock *clk, int diffTime);
  * @param clk the hptl clk structure.
  **/
 hptl_t hptl_getTime (hptl_clock *clk);
+
+/**
+ * Gets current time. The return would be in the format of the fatest function available in the
+ *system. Acuracy nor precision are not guaranteed
+ * @param clk the hptl clk structure.
+ **/
+hptl_t hptl_getFastestTime (hptl_clock *clk);
 
 /**
  * Convert a certain number of nanoseconds into clock-cycles

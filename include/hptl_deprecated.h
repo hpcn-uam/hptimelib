@@ -6,9 +6,10 @@
 
   License: MIT License
   (c) HPCN 2014-2017
+  (c) Naudit HPCN S.L. 2018-2021
 
   Author: Rafael Leira
-  E-Mail: rafael.leira@uam.es
+  E-Mail: rafael.leira@naudit.es
 
   Description: Old header file for hptl
 
@@ -47,6 +48,12 @@ int hptl_calibrateHz (int diffTime);
  * Gets current time
  **/
 hptl_t hptl_get (void);
+
+/**
+ * Gets current time. The return would be in the format of the fatest function available in the
+ *system. Acuracy nor precision are not guaranteed
+ **/
+hptl_t hptl_fget (void);
 
 /**
  * Return the resolution in terms of ns
